@@ -2,6 +2,7 @@ import 'package:earthquake/core/init/notifier/theme_notifier.dart';
 import 'package:earthquake/product/feature/earthquake/model/earthquakeModel.dart';
 import 'package:earthquake/product/widget/button/themeButton.dart';
 import 'package:earthquake/product/widget/card.dart';
+import 'package:earthquake/product/widget/search_bar/customSearchBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../service/earthquakeService.dart';
@@ -23,7 +24,7 @@ class _earthquakesDisplayState extends State<earthquakesDisplay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Earthquake App"),
+        title: customSearchBar(),
         actions: [
           iconButton(
             icon: const Icon(Icons.refresh),
