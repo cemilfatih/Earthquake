@@ -1,30 +1,37 @@
-import 'package:earthquake/core/init/notifier/theme_notifier.dart';
-import 'package:earthquake/product/feature/earthquake/model/earthquakeModel.dart';
-import 'package:earthquake/product/widget/button/themeButton.dart';
-import 'package:earthquake/product/widget/card.dart';
-import 'package:earthquake/product/widget/search_bar/customSearchBar.dart';
+import 'package:earthquake_listing/product/feature/earthquake_listing/mixin/earthquakeViewMixin.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../core/init/notifier/theme_notifier.dart';
+import '../../../widget/button/themeButton.dart';
+import '../../../widget/card/card.dart';
+import '../../../widget/search_bar/customSearchBar.dart';
+import '../model/earthquakeModel.dart';
 import '../service/earthquakeService.dart';
-import 'package:earthquake/product/feature/earthquake/model/earthquakeModel.dart';
 
 
+Future<List<Earthquake>> fetchData(){
 
-class earthquakesDisplay extends StatefulWidget {
+  return earthquakeService().getEarthquakeData();
+}
+
+class earthquakesDisplay extends StatefulWidget with earthquakeViewMixin{
   const earthquakesDisplay({Key? key}) : super(key: key);
 
   @override
   State<earthquakesDisplay> createState() => _earthquakesDisplayState();
+
 }
 
+
+
 class _earthquakesDisplayState extends State<earthquakesDisplay> {
+
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: customSearchBar(),
         actions: [
           iconButton(
             icon: const Icon(Icons.refresh),
@@ -51,41 +58,30 @@ class _earthquakesDisplayState extends State<earthquakesDisplay> {
               future: earthquakeService().getEarthquakeData(),
               builder: (context, AsyncSnapshot<List<Earthquake>> snapshot){
               if(snapshot.hasData){
-                return ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index){
-                    return GestureDetector(
-                      onTap: (){
-                        showDialog(
-                            context: context,
-                            builder: (context){
-                              return AlertDialog(
-                                title: Text(snapshot.data![index].title.toString()),
-                                content: Text("Magnitude: ${snapshot.data![index].mag.toString()}\n"
-                                    "Date: ${snapshot.data![index].date.toString()}\n"
-                                    "Depth: ${snapshot.data![index].depth.toString()}\n"
-                                    "Provider: ${snapshot.data![index].provider.toString()}"),
-                                actions: [
-                                  TextButton(
-                                      onPressed: (){
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text("Close"))
-                                ],
-                              );
-                            }
-                        );
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    customSearchBar(list: snapshot.data!),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index){
+                          return GestureDetector(
+                            onTap: (){
+                              earthquakesDisplay().buildShowDialog(context, snapshot.data!, index);
+                              },
+                            child: SizedBox(
+                              child: earthquakeCard(
+                                  snapshot.data![index].title.toString(),
+                                  snapshot.data![index].mag.toString(),
+                                  snapshot.data![index].date.toString())
+                            ),
 
-                      },
-                      child: SizedBox(
-                        child: earthquakeCard(
-                            snapshot.data![index].title.toString(),
-                            snapshot.data![index].mag.toString(),
-                            snapshot.data![index].date.toString())
+                          );
+                        },
                       ),
-
-                    );
-                  },
+                    ),
+                  ],
                 );
               }else{
                 return const Center(child: CircularProgressIndicator(),);
@@ -97,4 +93,6 @@ class _earthquakesDisplayState extends State<earthquakesDisplay> {
         ),
       ));
   }
+
+
 }

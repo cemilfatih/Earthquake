@@ -1,8 +1,10 @@
-import 'package:earthquake/product/constants/urls.dart';
-import 'package:earthquake/product/feature/earthquake/model/earthquakeModel.dart';
-import 'package:earthquake/utility/enum/statusCodes.dart';
+
+import 'package:earthquake_listing/utility/enum/statusCodes.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import '../../../constants/urls.dart';
+import '../model/earthquakeModel.dart';
 
 class earthquakeService{
 

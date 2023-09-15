@@ -1,8 +1,7 @@
 
-import 'package:earthquake/core/init/notifier/theme_notifier.dart';
+import 'package:earthquake_listing/core/init/notifier/theme_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-
 class ApplicationProvider{
   ApplicationProvider._init();
   static ApplicationProvider? _instance;
