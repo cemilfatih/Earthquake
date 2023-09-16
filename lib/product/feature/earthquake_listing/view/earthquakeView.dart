@@ -9,10 +9,7 @@ import '../model/earthquakeModel.dart';
 import '../service/earthquakeService.dart';
 
 
-Future<List<Earthquake>> fetchData(){
 
-  return earthquakeService().getEarthquakeData();
-}
 
 class earthquakesDisplay extends StatefulWidget with earthquakeViewMixin{
   const earthquakesDisplay({Key? key}) : super(key: key);
@@ -36,7 +33,7 @@ class _earthquakesDisplayState extends State<earthquakesDisplay> {
           iconButton(
             icon: const Icon(Icons.refresh),
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) =>  earthquakesDisplay()));
+              widget.refreshPage(context);
             },
           ),],
         leading: iconButton(
@@ -66,17 +63,20 @@ class _earthquakesDisplayState extends State<earthquakesDisplay> {
                       child: ListView.builder(
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index){
-                          return GestureDetector(
-                            onTap: (){
-                              earthquakesDisplay().buildShowDialog(context, snapshot.data!, index);
-                              },
-                            child: SizedBox(
-                              child: earthquakeCard(
-                                  snapshot.data![index].title.toString(),
-                                  snapshot.data![index].mag.toString(),
-                                  snapshot.data![index].date.toString())
-                            ),
+                          return Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: GestureDetector(
+                              onTap: (){
+                                earthquakesDisplay().buildShowDialog(context, snapshot.data!, index);
+                                },
+                              child: SizedBox(
+                                child: earthquakeCard(
+                                    snapshot.data![index].title.toString(),
+                                    snapshot.data![index].mag.toString(),
+                                    snapshot.data![index].date.toString())
+                              ),
 
+                            ),
                           );
                         },
                       ),
@@ -84,7 +84,7 @@ class _earthquakesDisplayState extends State<earthquakesDisplay> {
                   ],
                 );
               }else{
-                return const Center(child: CircularProgressIndicator(),);
+                return earthquakesDisplay().loading();
               }
           },
         ),

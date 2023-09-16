@@ -1,3 +1,4 @@
+import 'package:earthquake_listing/product/constants/colors.dart';
 import 'package:earthquake_listing/product/feature/earthquake_listing/mixin/earthquakeViewMixin.dart';
 import 'package:earthquake_listing/product/widget/card/card.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +76,7 @@ class customSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+
       onTap: (){
         showSearch(context: context, delegate: customSearchDelegate(list: list));
       },

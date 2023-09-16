@@ -1,5 +1,6 @@
 import 'package:earthquake_listing/product/feature/earthquake_listing/view/earthquakeView.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../model/earthquakeModel.dart';
 
@@ -24,5 +25,14 @@ mixin earthquakeViewMixin {
           );
         }
     );
+  }
+
+  void refreshPage(BuildContext context) {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const earthquakesDisplay()));
+  }
+
+  Widget loading(){
+     return Lottie.network(
+         'https://raw.githubusercontent.com/xvrh/lottie-flutter/master/example/assets/Mobilo/A.json');
   }
 }
