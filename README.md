@@ -1,30 +1,27 @@
-# 🌍 Earthquake Tracker
+# Earthquake 
 
-An intuitive frontend application designed to fetch real-time earthquake data from the internet and present it in a clear, accessible interface. 
+A Flutter application designed to fetch and display earthquake data from a static entry point URL, presenting it in a clean and accessible user interface.
 
 ## ✨ Features
 
-*   **Real-Time Data Visualization:** Connects to external earthquake APIs to display the most recent seismic activity globally.
-*   **🔍 Search Bar:** Quickly filter and locate specific earthquakes by region, magnitude, or date.
-*   **🌗 Dynamic Theme:** Seamlessly switch between light and dark modes (or custom themes) for a comfortable viewing experience in any lighting condition.
-*   **Responsive Design:** Optimized for both desktop and mobile viewing.
+*   **Earthquake Data Display:** Retrieves and visualizes earthquake information from the internet.
+*   **Search Bar:** Allows users to easily search and filter through the earthquake data.
+*   **Dynamic Theme:** Supports dynamic theming for a flexible and comfortable viewing experience.
 
 ## 🛠️ Technologies Used
 
-*   **Frontend:** [e.g., React, Vue, Flutter, HTML/CSS/JS]
-*   **Data Source:** [e.g., USGS Earthquake API, EMSC API]
-*   **Styling:** [e.g., Tailwind CSS, Material UI, Bootstrap]
+*   **Framework:** Flutter
+*   **Language:** Dart
 
 ## 🚀 Getting Started
 
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+Follow these instructions to run the project on your local machine.
 
 ### Prerequisites
 
-Ensure you have the following installed:
-*   [e.g., Node.js and npm / Flutter SDK / Python]
+Ensure you have the Flutter SDK installed on your system. If you haven't set it up yet, follow the [official Flutter installation guide](https://docs.flutter.dev/get-started/install).
 
-### Installation
+### Installation & Execution
 
 1. **Clone the repository:**
    ```bash
