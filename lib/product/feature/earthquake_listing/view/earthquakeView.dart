@@ -37,7 +37,7 @@ class _earthquakesDisplayState extends State<earthquakesDisplay> {
             },
           ),],
         leading: iconButton(
-          icon: const Icon(Icons.change_circle_outlined),
+          icon: const Icon(Icons.lightbulb),
           onPressed: (){
             context.read<ThemeNotifier>().changeTheme();
           },
@@ -67,10 +67,11 @@ class _earthquakesDisplayState extends State<earthquakesDisplay> {
                             padding: const EdgeInsets.all(5.0),
                             child: GestureDetector(
                               onTap: (){
-                                earthquakesDisplay().buildShowDialog(context, snapshot.data!, index);
+                                earthquakesDisplay().getDetail(context, snapshot.data![index]);
                                 },
                               child: SizedBox(
                                 child: earthquakeCard(
+                                  context,
                                     snapshot.data![index].title.toString(),
                                     snapshot.data![index].mag.toString(),
                                     snapshot.data![index].date.toString())

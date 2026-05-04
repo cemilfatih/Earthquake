@@ -3,10 +3,38 @@ import 'package:flutter/material.dart';
 
 class themes{
 
+  TextStyle magnitude = TextStyle(
+    fontSize: 50,
+    color: Colors.white
+  );
+
+  TextStyle danger = TextStyle(
+    fontSize: 15,
+    color: Colors.white70
+  );
+
   ThemeData darkTheme = ThemeData.dark().copyWith(
 
     scaffoldBackgroundColor: colors().primaryColor,
     cardColor: colors().cardColor,
+
+    textTheme: TextTheme().copyWith(
+
+
+
+      titleLarge: TextStyle(
+        fontSize: 30,
+        color: Colors.white,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 15,
+        color: Colors.white,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 10,
+        color: Colors.white,
+      ),
+    ),
 
 
     inputDecorationTheme: InputDecorationTheme(

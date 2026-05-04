@@ -1,3 +1,4 @@
+import 'package:earthquake_listing/product/feature/earthquake_detail/view/earthquakeDetailView.dart';
 import 'package:earthquake_listing/product/feature/earthquake_listing/view/earthquakeView.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -5,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import '../model/earthquakeModel.dart';
 
 mixin earthquakeViewMixin {
+
    buildShowDialog(BuildContext context, List<Earthquake> snapshot, int index) {
     return showDialog(
         context: context,
@@ -25,6 +27,9 @@ mixin earthquakeViewMixin {
           );
         }
     );
+  }
+  void getDetail(BuildContext context,Earthquake earthquake) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) =>  earhtquakeDetailView(earthquake:earthquake )));
   }
 
   void refreshPage(BuildContext context) {

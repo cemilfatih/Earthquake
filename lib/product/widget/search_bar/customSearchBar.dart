@@ -50,7 +50,7 @@ class customSearchDelegate extends SearchDelegate with earthquakeViewMixin{
           },
           child: SizedBox(
             child: earthquakeCard(
-              
+              context,
               list[index].title!,
               list[index].mag!,
               list[index].date!,
